@@ -1,4 +1,4 @@
-// al click su una thumb, visualizzare in grande l'immagine corrispondente
+// applicare l'autoplay allo slider: ogni 3 secondi, cambia immagine automaticamente
 
 Vue.config.devtools = true;
 
@@ -7,6 +7,8 @@ const app = new Vue(
         el: '#root',
         data: {
             currentSlide: 0,
+            clock: null,
+
             slides: [
                 {
                     image: 'img/01.jpg',
@@ -36,25 +38,46 @@ const app = new Vue(
             ]
         },
         methods: {
+            increment: function() {
+                this.currentSlide++;
+            },
+            decrement: function() {
+                this.currentSlide--;
+            },
+
             nextSlide: function() {
                 if(this.currentSlide < this.slides.length - 1) {
-                    this.currentSlide++;
-                } else {
-                    this.currentSlide = 0;
+                    this.increment();   
+                } else { 
+                    this.currentSlide = 0;                    
                 }
             },
+
             prevSlide: function() {
                 if(this.currentSlide > 0) {
-                    this.currentSlide--;
+                    this.decrement();
                 }else {
                     this.currentSlide = this.slides.length - 1;
                 }
             },
+
             thisSlide: function(index) {
                 this.currentSlide = index;
-            }
+            },
+            
+            autoSlide: function() {
+                this.clock = setInterval(() => {
+                    this.nextSlide();
+                }, 3000);
+            },
 
+            created: function(){
+                this.autoSlide();
+            }
+            
         }
     }
 );
+
+
 

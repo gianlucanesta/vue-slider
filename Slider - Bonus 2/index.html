@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue Js Carousel Bonus 1</title>
+    <title>Vue Js Carousel Bonus 2</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
@@ -19,7 +19,7 @@
     <div id="root">
         <div class="app-container">
             <!-- Slider -->
-            <div class="slider">
+            <div v-on:mouseleave="autoSlide" class="slider">
                 <!-- Big Image container -->
                 <div class="big-images-container">
                     <!-- Single image container -->
@@ -46,8 +46,8 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <!-- End Arrow down -->
-    
-
+                    
+                    
                     <div @click="thisSlide(index)" v-for="element, index in slides" class="single-thumb" :class="{'active': index === currentSlide }">
                         <img :src="element.image" :alt="element.title">
                     </div>
@@ -58,5 +58,6 @@
     </div>
     
     <script type="text/javascript" src="js/main.js"></script>
+        
 </body>
 </html>
